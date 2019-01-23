@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="GameAppSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="1687881521a" ></w:Config>
+	<e:Image id="headImg" width="60" height="60" x="24" y="20" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="beanImg" width="40" height="40" x="126.7" y="40" anchorOffsetX="0" anchorOffsetY="0" source="asserts_json.s1"/>
+	<e:Label id="beanScore" text="Label" x="174" y="50"/>
+	<e:Button label="提现" x="282.86" y="52" anchorOffsetX="7.66" anchorOffsetY="4.77" height="28.47" width="67"/>
+	<e:Button label="充值" x="358.19" y="50.54" anchorOffsetX="7.66" anchorOffsetY="4.77" height="28.47" width="67"/>
+</e:Skin>
