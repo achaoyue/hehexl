@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="GameAppSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="1687881521a" ></w:Config>
+	<e:Group id="bg" width="640" height="1136" x="0" y="0">
+		<e:Image width="640" height="1136" x="0" y="0" source="bg_jpg"/>
+	</e:Group>
 	<e:Image id="headImg" width="60" height="60" x="24" y="20" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image id="beanImg" width="40" height="40" x="126.7" y="40" anchorOffsetX="0" anchorOffsetY="0" source="asserts_json.s1"/>
-	<e:Label id="beanScore" text="Label" x="174" y="50"/>
-	<e:Button label="提现" x="282.86" y="52" anchorOffsetX="7.66" anchorOffsetY="4.77" height="28.47" width="67"/>
-	<e:Button label="充值" x="358.19" y="50.54" anchorOffsetX="7.66" anchorOffsetY="4.77" height="28.47" width="67"/>
+	<e:Label id="beanScore" text="1200个" x="174" y="60" size="20"/>
+	<e:Button id="btn_tixian" label="提现" x="282.86" y="52" anchorOffsetX="7.66" anchorOffsetY="4.77" height="28.47" width="67"/>
+	<e:Button id="btn_congzhi" label="充值" x="358.19" y="52" anchorOffsetX="7.66" anchorOffsetY="4.77" height="28.47" width="67"/>
+	<e:Rect id="middle_bannel" width="580" height="157.88" x="30" y="117" anchorOffsetX="0" anchorOffsetY="0" enabled="true"/>
+	<e:Button id="btn_start" label="开始游戏" y="956" anchorOffsetX="0" width="221.21" anchorOffsetY="0" height="78.79" horizontalCenter="0">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="asserts_json.b_3"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:TabBar id="tabPanel" width="580" height="578.79" x="30" y="300" anchorOffsetY="0">
+	</e:TabBar>
 </e:Skin>

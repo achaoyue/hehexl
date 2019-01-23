@@ -59,7 +59,7 @@ class Main extends eui.UILayer {
 
     private async runGame() {
         await this.loadResource()
-        this.createGameScene();
+        this.createGameScene2();
         const result = await RES.getResAsync("description_json")
         this.startAnimation(result);
         await platform.login();
@@ -95,6 +95,10 @@ class Main extends eui.UILayer {
     }
 
     private textfield: egret.TextField;
+
+    protected createGameScene2(): void {
+        this.addChild(new GameApp())
+    }
     /**
      * 创建场景界面
      * Create scene interface
