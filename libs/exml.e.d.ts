@@ -8,6 +8,8 @@ declare module skins{
 }
 declare class GameAppSkin extends eui.Skin{
 }
+declare class HomeTabPanelSkin extends eui.Skin{
+}
 declare module skins{
 	class HScrollBarSkin extends eui.Skin{
 	}

@@ -13,13 +13,15 @@
 		"eui.VScrollBar": "resource/eui_skins/VScrollBarSkin.exml",
 		"eui.VSlider": "resource/eui_skins/VSliderSkin.exml",
 		"eui.ItemRenderer": "resource/eui_skins/ItemRendererSkin.exml",
-		"GameApp": "resource/eui_skins/GameApp.exml"
+		"GameApp": "resource/eui_skins/GameApp.exml",
+		"HomeTabPanel": "resource/eui_skins/HomeTabPanel.exml"
 	},
 	"autoGenerateExmlsList": true,
 	"exmls": [
 		"resource/eui_skins/ButtonSkin.exml",
 		"resource/eui_skins/CheckBoxSkin.exml",
 		"resource/eui_skins/GameApp.exml",
+		"resource/eui_skins/HomeTabPanel.exml",
 		"resource/eui_skins/HScrollBarSkin.exml",
 		"resource/eui_skins/HSliderSkin.exml",
 		"resource/eui_skins/ItemRendererSkin.exml",
