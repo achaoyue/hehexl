@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="HomeTabItemSkin" width="450" height="66" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="1687ac90615" ></w:Config>
+	<e:Label text="{data}" x="49" y="18"/>
+	<e:Rect width="620" height="1" x="0" bottom="0" fillColor="0x05c2fc"/>
+	<e:Label text="胜利！" x="212" y="0" textColor="0xf41a1a" rotation="40.36" size="30"/>
+</e:Skin>

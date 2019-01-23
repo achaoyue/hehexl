@@ -1,23 +1,21 @@
 {
-    "1687881521a": {
-        "path": "components/GameApp.ts",
-        "class": "GameApp",
-        "parentPath": "",
-        "guideLines": [
-            {
-                "type": "h",
-                "pos": 41.333
-            }
-        ]
-    },
-    "1687a79fd32": {
-        "path": "components/HomeTabPanel.ts",
-        "class": "HomeTabPanel",
-        "parentPath": ""
-    },
-    "1687ac90615": {
-        "path": "components/homeTab/HomeTabItem.ts",
-        "class": "HomeTabItem",
-        "parentPath": ""
-    }
+  "1687881521a": {
+    "path": "components/GameApp.ts",
+    "class": "GameApp",
+    "parentPath": "",
+    "guideLines": [
+      {
+        "type": "h",
+        "pos": 41.333
+      }
+    ]
+  },
+  "1687a79fd32": {
+    "path": "components/HomeTabPanel.ts",
+    "class": "HomeTabPanel",
+    "parentPath": ""
+  },
+  "global": {
+    "globalAutoLayerMarkEnable": true
+  }
 }
