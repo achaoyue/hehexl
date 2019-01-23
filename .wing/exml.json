@@ -14,5 +14,10 @@
         "path": "components/HomeTabPanel.ts",
         "class": "HomeTabPanel",
         "parentPath": ""
+    },
+    "1687ac90615": {
+        "path": "components/homeTab/HomeTabItem.ts",
+        "class": "HomeTabItem",
+        "parentPath": ""
     }
 }

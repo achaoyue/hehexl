@@ -7,9 +7,9 @@
 	<e:Image id="headImg" width="60" height="60" x="24" y="20" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image id="beanImg" width="40" height="40" x="126.7" y="40" anchorOffsetX="0" anchorOffsetY="0" source="asserts_json.s1"/>
 	<e:Label id="beanScore" text="1200个" x="174" y="60" size="20"/>
-	<e:Button id="btn_tixian" label="提现" x="282.86" y="52.51" anchorOffsetX="7.66" anchorOffsetY="5.28" height="31.5" width="67"/>
-	<e:Button id="btn_congzhi" label="充值" x="358.19" y="53.02" anchorOffsetX="7.66" anchorOffsetY="5.79" height="34.53" width="67"/>
-	<e:Rect id="middle_bannel" width="580" height="157.88" x="30" y="117" anchorOffsetX="0" anchorOffsetY="0" enabled="true"/>
+	<e:Button id="btn_tixian" label="提现" x="282.86" y="52.51" anchorOffsetX="7.66" anchorOffsetY="5.28" height="35" width="67"/>
+	<e:Button id="btn_congzhi" label="充值" x="358.19" y="53.02" anchorOffsetX="7.66" anchorOffsetY="5.79" height="35" width="67"/>
+	<e:Rect id="middle_bannel" width="620" height="178" x="10" y="117" anchorOffsetX="0" anchorOffsetY="0" enabled="true"/>
 	<ns1:HomeTabPanel id="tabPanel" width="620" height="580" x="10" y="305.58" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Button id="btn_start" label="开始游戏" y="956" anchorOffsetX="0" width="221.21" anchorOffsetY="0" height="78.79" horizontalCenter="0">
 		<e:skinName>

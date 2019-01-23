@@ -16,6 +16,7 @@
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/components/GameApp.js",
-		"bin-debug/components/HomeTabPanel.js"
+		"bin-debug/components/homeTab/HomeTabItem.js",
+		"bin-debug/components/homeTab/HomeTabPanel.js"
 	]
 }
