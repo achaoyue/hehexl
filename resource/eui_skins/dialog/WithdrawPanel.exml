@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="WithdrawPanelSkin" width="620" height="347" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="1687ea1d209" ></w:Config>
+	<e:Rect width="620" height="347" x="0" y="0" fillColor="0xf49090"/>
+	<e:Label text="可提现豆豆" x="53" y="58"/>
+	<e:Label text="提现豆豆" x="83" y="116"/>
+	<e:Label text="微信收钱码" x="53" y="173.5"/>
+	<e:Label id="totalBeans" text="1200个" x="223" y="63" textColor="0xdbd9d9" size="25" anchorOffsetX="0" width="147.67"/>
+	<e:TextInput id="beanNum" width="147" height="43" x="223" y="109.5" anchorOffsetX="0" anchorOffsetY="0" displayAsPassword="true"/>
+	<e:Button id="btnChoseFile" label="选择" x="223" y="168.73" anchorOffsetX="0" width="103" anchorOffsetY="0" height="39.55">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="asserts_json.b_3"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btnSubmit" label="确定" x="175.9" y="268.45" anchorOffsetX="0" width="123.21" anchorOffsetY="0" height="59.55">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="asserts_json.b_4" source.down="asserts_json.b_5"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btnCancel" label="取消" x="317.13" y="268.45" anchorOffsetX="0" width="123.21" anchorOffsetY="0" height="59.55">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="asserts_json.b_4" source.down="asserts_json.b_5"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="qrImg" width="197.33" height="190" x="401" y="47" anchorOffsetX="0" anchorOffsetY="0"/>
+</e:Skin>

@@ -9,6 +9,8 @@ class GameApp extends eui.Component implements eui.UIComponent {
 	public middle_bannel: eui.Rect;
 	public tabPanel: HomeTabPanel;
 	public btn_start: eui.Button;
+	private tixianPanel: RechangePanel;
+	private congzhiPanel: WithdrawPanel;
 
 
 
@@ -24,12 +26,24 @@ class GameApp extends eui.Component implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
-		this.tabPanel.vStack.selectedIndex = 1;
-		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_TAP, this.changeTab, this);
+		this.btn_congzhi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCongzhi, this);
+		this.btn_tixian.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTixian,this);
 	}
 
-	private changeTab() {
-		this.tabPanel.vStack.selectedIndex = 1 == this.tabPanel.vStack.selectedIndex ? 0 : 1;
+	private onCongzhi(event: egret.TouchEvent) {
+		if (this.tixianPanel == null) {
+			this.tixianPanel = new RechangePanel();
+			this.tixianPanel.x = 10;
+			this.tixianPanel.y = (this.height - 584) / 2
+		}
+		this.addChild(this.tixianPanel);
 	}
-
+	private onTixian(){
+		if(this.congzhiPanel == null){
+			this.congzhiPanel = new WithdrawPanel();
+			this.congzhiPanel.x = 10;
+			this.congzhiPanel.y = (this.height - 584) / 2
+		}
+		this.addChild(this.congzhiPanel);
+	}
 }

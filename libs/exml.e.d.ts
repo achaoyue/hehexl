@@ -6,6 +6,10 @@ declare module skins{
 	class CheckBoxSkin extends eui.Skin{
 	}
 }
+declare class RechangePanelSkin extends eui.Skin{
+}
+declare class WithdrawPanelSkin extends eui.Skin{
+}
 declare class GameAppSkin extends eui.Skin{
 }
 declare class HomeTabItemSkin extends eui.Skin{

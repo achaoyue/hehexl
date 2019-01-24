@@ -14,12 +14,16 @@
 		"eui.VSlider": "resource/eui_skins/VSliderSkin.exml",
 		"eui.ItemRenderer": "resource/eui_skins/ItemRendererSkin.exml",
 		"GameApp": "resource/eui_skins/GameApp.exml",
-		"HomeTabPanel": "resource/eui_skins/homeTab/HomeTabPanel.exml"
+		"HomeTabPanel": "resource/eui_skins/homeTab/HomeTabPanel.exml",
+		"RechangePanel": "resource/eui_skins/dialog/RechangePanel.exml",
+		"WithdrawPanel": "resource/eui_skins/dialog/WithdrawPanel.exml"
 	},
 	"autoGenerateExmlsList": true,
 	"exmls": [
 		"resource/eui_skins/ButtonSkin.exml",
 		"resource/eui_skins/CheckBoxSkin.exml",
+		"resource/eui_skins/dialog/RechangePanel.exml",
+		"resource/eui_skins/dialog/WithdrawPanel.exml",
 		"resource/eui_skins/GameApp.exml",
 		"resource/eui_skins/homeTab/HomeTabItem.exml",
 		"resource/eui_skins/homeTab/HomeTabPanel.exml",

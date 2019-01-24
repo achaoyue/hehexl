@@ -1,21 +1,50 @@
 {
-  "1687881521a": {
-    "path": "components/GameApp.ts",
-    "class": "GameApp",
-    "parentPath": "",
-    "guideLines": [
-      {
-        "type": "h",
-        "pos": 41.333
-      }
-    ]
-  },
-  "1687a79fd32": {
-    "path": "components/HomeTabPanel.ts",
-    "class": "HomeTabPanel",
-    "parentPath": ""
-  },
-  "global": {
-    "globalAutoLayerMarkEnable": true
-  }
+    "1687881521a": {
+        "path": "components/GameApp.ts",
+        "class": "GameApp",
+        "parentPath": "",
+        "guideLines": [
+            {
+                "type": "h",
+                "pos": 84
+            }
+        ],
+        "guideLinesEnabled": true,
+        "backgroundX": 0,
+        "backgroundY": 0,
+        "backgroundWidth": -1,
+        "backgroundHeight": -1,
+        "useBgImage": true,
+        "useBgColor": true,
+        "backgroundAlpha": 100
+    },
+    "1687a79fd32": {
+        "path": "components/HomeTabPanel.ts",
+        "class": "HomeTabPanel",
+        "parentPath": ""
+    },
+    "global": {
+        "globalAutoLayerMarkEnable": true,
+        "gridColor": 5000268,
+        "gridEnabled": false,
+        "gridSize": 20
+    },
+    "1687e467408": {
+        "guideLinesEnabled": true,
+        "guideLines": [
+            {
+                "type": "v",
+                "pos": 63
+            },
+            {
+                "type": "h",
+                "pos": 26
+            }
+        ]
+    },
+    "1687ea1d209": {
+        "path": "components/dialog/WithdrawPanel.ts",
+        "class": "WithdrawPanel",
+        "parentPath": ""
+    }
 }
