@@ -27,7 +27,8 @@ class GameApp extends eui.Component implements eui.UIComponent {
 	protected childrenCreated(): void {
 		super.childrenCreated();
 		this.btn_congzhi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCongzhi, this);
-		this.btn_tixian.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onTixian,this);
+		this.btn_tixian.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTixian, this);
+		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
 	}
 
 	private onCongzhi(event: egret.TouchEvent) {
@@ -38,12 +39,19 @@ class GameApp extends eui.Component implements eui.UIComponent {
 		}
 		this.addChild(this.tixianPanel);
 	}
-	private onTixian(){
-		if(this.congzhiPanel == null){
+	private onTixian() {
+		if (this.congzhiPanel == null) {
 			this.congzhiPanel = new WithdrawPanel();
 			this.congzhiPanel.x = 10;
 			this.congzhiPanel.y = (this.height - 584) / 2
 		}
 		this.addChild(this.congzhiPanel);
+	}
+
+	private startGame() {
+		let game: GamePanel = new GamePanel();
+		game.x = 0;
+		game.y = 0;
+		this.addChild(game);
 	}
 }

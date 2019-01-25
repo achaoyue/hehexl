@@ -46,5 +46,15 @@
         "path": "components/dialog/WithdrawPanel.ts",
         "class": "WithdrawPanel",
         "parentPath": ""
+    },
+    "1688044f4e0": {
+        "path": "components/game/GamePanel.ts",
+        "class": "GamePanel",
+        "parentPath": ""
+    },
+    "16880c305db": {
+        "path": "components/game/VirtualJoystick.ts",
+        "class": "VirtualJoystick",
+        "parentPath": ""
     }
 }

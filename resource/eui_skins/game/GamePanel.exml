@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="GamePanelSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
+	<w:Config id="1688044f4e0" ></w:Config>
+	<e:Group id="bgGroup" width="640" height="1136" x="0" y="0">
+		<e:Rect id="rect" width="640" height="1136" x="0" y="0" fillColor="0xd39898" touchChildren="false" scaleX="1" scaleY="1"/>
+		<ns1:VirtualJoystick id="vJoystick" width="300" height="300" x="50" y="40" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:Image id="selfSprit" source="asserts_json.s1" x="183.00000000000003" y="545" anchorOffsetX="52.05" width="104.4" anchorOffsetY="0.23" height="118.75" scaleX="1" scaleY="1"/>
+	</e:Group>
+	<e:Group width="226" height="104" x="207" y="993" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Button id="btnTest" label="Button" y="27" x="58" touchChildren="true" scaleX="1" scaleY="1"/>
+	</e:Group>
+</e:Skin>

@@ -10,14 +10,17 @@
 		"libs/modules/promise/promise.js"
 	],
 	"game": [
+		"bin-debug/components/dialog/RechangePanel.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/components/GameApp.js",
-		"bin-debug/components/dialog/RechangePanel.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/components/dialog/WithdrawPanel.js",
+		"bin-debug/components/game/GamePanel.js",
+		"bin-debug/components/game/JoystickEvent.js",
+		"bin-debug/components/game/VirtualJoystick.js",
 		"bin-debug/components/homeTab/HomeTabItem.js",
 		"bin-debug/components/homeTab/HomeTabPanel.js"
 	]

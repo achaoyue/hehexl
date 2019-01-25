@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="VirtualJoystickSkin" width="300" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="16880c305db" ></w:Config>
+	<e:Group id="bgGroup" width="300" height="300" x="0" y="0">
+		<e:Rect id="rect" width="280" height="280" x="10" y="10" anchorOffsetX="0" anchorOffsetY="0" ellipseWidth="280" ellipseHeight="280" fillColor="0xefe677" fillAlpha="0.4" scaleX="1" scaleY="1"/>
+		<e:Image source="asserts_json.b_6" x="150.62" y="13.57" width="70" height="70" rotation="92.71" anchorOffsetX="-1.3" anchorOffsetY="36.1" scaleX="1" scaleY="1"/>
+		<e:Image source="asserts_json.b_6" width="70" height="70" y="113.21" x="16" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:Image source="asserts_json.b_6" x="122.46" y="287" width="70" height="70" rotation="269.93" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:Image source="asserts_json.b_6" x="279.57" y="148.21" width="70" height="70" rotation="180.35" anchorOffsetX="0.2" anchorOffsetY="33" scaleX="1" scaleY="1"/>
+		<e:Rect id="centerPoint" width="62" height="62" x="155" y="155" ellipseWidth="62" ellipseHeight="62" fillColor="0xe04141" anchorOffsetX="31" anchorOffsetY="31" scaleX="1" scaleY="1"/>
+	</e:Group>
+</e:Skin>
