@@ -6,7 +6,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	public selfSprit: eui.Image;
 	public btnTest: eui.Button;
 
-	private vJoystickPoint: egret.Point = new egret.Point();
+	private jsEvent: JoystickEvent;
 
 	public constructor() {
 		super();
@@ -19,22 +19,12 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
-		this.vJoystick.setFixed(false,this.bgGroup);
-		this.vJoystick.addMoveListener(this.moveSprit,this);
+		this.vJoystick.setFixed(false, this.bgGroup);
+		this.vJoystick.addMoveListener(this.changeMove, this);
+		//移动精灵
+		this.addEventListener(egret.Event.ENTER_FRAME, this.moveSprite, this);
 
 		this.btnTest.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-	}
-
-	private onTouchBegin(event: egret.TouchEvent) {
-		this.vJoystickPoint.x = this.vJoystick.x;
-		this.vJoystickPoint.y = this.vJoystick.y;
-		this.vJoystick.x = event.stageX - this.vJoystick.width / 2;
-		this.vJoystick.y = event.stageY - this.vJoystick.height / 2;
-	}
-
-	private onTouchEnd(event: egret.TouchEvent) {
-		this.vJoystick.x = this.vJoystickPoint.x;
-		this.vJoystick.y = this.vJoystickPoint.y;
 	}
 
 	private onClick(event: egret.TouchEvent) {
@@ -42,8 +32,18 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		event.stopPropagation();
 		event.preventDefault();
 	}
-	private moveSprit(event:JoystickEvent){
-		console.log(event.dirAngle*180/3.14);
+	private changeMove(event: JoystickEvent) {
+		console.log(event.dirAngle * 180 / 3.14);
+		this.jsEvent = event;
+	}
+
+	private moveSprite() {
+		if (this.jsEvent === undefined || this.jsEvent.strength == 0) {
+			return;
+		} else {
+			this.selfSprit.y += Math.sin(this.jsEvent.dirAngle) * 3 * this.jsEvent.strength / 20;
+			this.selfSprit.x += Math.cos(this.jsEvent.dirAngle) * 3 * this.jsEvent.strength / 20;
+		}
 	}
 
 	/**

@@ -32,13 +32,14 @@ class HomeTabPanel extends eui.Component implements eui.UIComponent {
 		//填充数据
 		this.realTimeCollection = new eui.ArrayCollection([1,2,3,4,5,6,7,8,9,10,11,12,14,15]);
 		this.realTimeList.dataProvider = this.realTimeCollection;
-		this.realTimeList.itemRendererSkinName = HomeTabItemSkin;
+		this.realTimeList.itemRendererSkinName = "HomeTabItemSkin";
 		// this.realTimeList.itemRenderer = HomeTabItem
 		this.realTimeScroller.viewport = this.realTimeList
 
 		this.historyCollection = new eui.ArrayCollection([1,2,3,4]);
 		this.myHistoryList.dataProvider = this.historyCollection;
-		this.myHistoryList.itemRendererSkinName = HomeTabItemSkin;
+		this.myHistoryList.itemRendererSkinName = "HomeTabItemSkin"
+		// this.myHistoryList.itemRenderer = HomeTabItem;
 		this.myHistoryScroller.viewport = this.myHistoryList
 		
 	}
