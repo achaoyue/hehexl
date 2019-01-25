@@ -12,6 +12,8 @@ declare class WithdrawPanelSkin extends eui.Skin{
 }
 declare class GamePanelSkin extends eui.Skin{
 }
+declare class VirtualJoystickSkin extends eui.Skin{
+}
 declare class GameAppSkin extends eui.Skin{
 }
 declare class HomeTabItemSkin extends eui.Skin{
@@ -53,8 +55,6 @@ declare module skins{
 declare module skins{
 	class ToggleSwitchSkin extends eui.Skin{
 	}
-}
-declare class VirtualJoystickSkin extends eui.Skin{
 }
 declare module skins{
 	class VScrollBarSkin extends eui.Skin{
