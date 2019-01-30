@@ -29,6 +29,7 @@ class GameApp extends eui.Component implements eui.UIComponent {
 		this.btn_congzhi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCongzhi, this);
 		this.btn_tixian.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTixian, this);
 		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
+		console.log(this.width,this.height)
 	}
 
 	private onCongzhi(event: egret.TouchEvent) {

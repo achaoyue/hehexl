@@ -17,6 +17,7 @@ class HomeTabPanel extends eui.Component implements eui.UIComponent {
 
 	public constructor() {
 		super();
+		this.skinName = "HomeTabPanelSkin"
 	}
 
 	protected partAdded(partName: string, instance: any): void {

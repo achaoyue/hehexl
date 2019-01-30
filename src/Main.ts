@@ -97,7 +97,10 @@ class Main extends eui.UILayer {
     private textfield: egret.TextField;
 
     protected createGameScene2(): void {
-        this.addChild(new GameApp())
+        //这里需要界面适配
+        let game:GameApp = new GameApp();
+        this.addChild(game);
+        game.y = (this.height - game.height)/2
     }
     /**
      * 创建场景界面

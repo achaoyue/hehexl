@@ -3,7 +3,7 @@ class JoystickEvent {
 	/**
 	 * 方向角度
 	 */
-	public dirAngle: number = undefined;
+	public dirAngle: number = 0;
 	/**
 	 * 力度，即原始的点和现在点的距离
 	 */

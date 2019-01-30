@@ -3,7 +3,7 @@
 	<w:Config id="1687a79fd32" ></w:Config>
 	<e:Image source="asserts_json.f" x="0" y="60" anchorOffsetX="0" anchorOffsetY="0" width="620" height="520" fillMode="scale"/>
 	<e:ViewStack id="vStack" y="128" selectedIndex="1" width="450" height="370" x="84" anchorOffsetX="0" anchorOffsetY="0">
-		<e:Group width="450" height="370" x="0" y="0" visible="false">
+		<e:Group width="450" height="370" x="0" y="0">
 			<e:Scroller id="realTimeScroller" x="0" y="0">
 				<e:Group>
 					<e:List id="realTimeList" width="450" height="370" x="0" y="0"/>
