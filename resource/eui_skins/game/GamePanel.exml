@@ -10,5 +10,6 @@
 		<e:Group width="226" height="104" x="393" y="1002" anchorOffsetX="0" anchorOffsetY="0">
 			<e:Button id="btnTest" label="Button" y="27" x="58" touchChildren="true" scaleX="1" scaleY="1"/>
 		</e:Group>
+		<e:Button id="btn_close" label="关闭" x="563" y="22.52" anchorOffsetX="0" width="56" height="56"/>
 	</e:Group>
 </e:Skin>
