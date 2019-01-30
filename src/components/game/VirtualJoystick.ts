@@ -21,13 +21,9 @@ class VirtualJoystick extends eui.Component implements eui.UIComponent {
 	 */
 	private touchId: number;
 	/**
-	 * 最大半径
+	 * 最大力度，默认为宽度的一半
 	 */
-	private maxR = 300;
-	/**
-	 * 最大力度
-	 */
-	private maxStrength: number = 10;
+	public maxStrength: number;
 
 	public constructor() {
 		super();
@@ -41,6 +37,7 @@ class VirtualJoystick extends eui.Component implements eui.UIComponent {
 		super.childrenCreated();
 		this.centerPoint.x = this.width / 2;
 		this.centerPoint.y = this.height / 2;
+		this.maxStrength = this.width/2;
 		this.bgGroup.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouchStart, this);
 		this.bgGroup.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouchMove, this);
 		this.bgGroup.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouchEnd, this);
@@ -56,8 +53,9 @@ class VirtualJoystick extends eui.Component implements eui.UIComponent {
 		this.touchId = event.touchPointID
 		if (!this.fixed) {
 			this.originPoint = new egret.Point(this.x, this.y);
-			this.x = event.stageX - this.width / 2 - this.localToGlobal().x;
-			this.y = event.stageY - this.height / 2 - this.localToGlobal().y;
+			let p = this.parent.globalToLocal(event.stageX - this.width / 2, event.stageY - this.height / 2);
+			this.x = p.x;
+			this.y = p.y;
 		}
 	}
 
@@ -65,9 +63,15 @@ class VirtualJoystick extends eui.Component implements eui.UIComponent {
 		if (this.statues != 1 || this.touchId != event.touchPointID) {
 			return;
 		}
-		this.centerPoint.x = event.stageX - this.localToGlobal().x;
-		this.centerPoint.y = event.stageY - this.localToGlobal().y;
+		let p = this.globalToLocal(event.stageX, event.stageY);
+		this.centerPoint.x = p.x;
+		this.centerPoint.y = p.y;
 		let jsEvent: JoystickEvent = this.getJoystickEvent();
+		if (jsEvent.strength > this.maxStrength) {
+			this.centerPoint.x = this.width / 2 + this.maxStrength * Math.cos(jsEvent.dirAngle)
+			this.centerPoint.y = this.height / 2 - this.maxStrength * Math.sin(-jsEvent.dirAngle)
+			jsEvent.strength = this.maxStrength;
+		}
 		this.dispatchjsEvent(jsEvent);
 	}
 
@@ -80,10 +84,10 @@ class VirtualJoystick extends eui.Component implements eui.UIComponent {
 		this.centerPoint.x = this.width / 2;
 		this.centerPoint.y = this.height / 2;
 		this.dispatchjsEvent(new JoystickEvent());
-		if (!this.fixed) {
-			this.x = this.originPoint.x;
-			this.y = this.originPoint.y;
-		}
+		// if (!this.fixed) {
+		// 	this.x = this.originPoint.x;
+		// 	this.y = this.originPoint.y;
+		// }
 	}
 
 	/**
@@ -127,8 +131,8 @@ class VirtualJoystick extends eui.Component implements eui.UIComponent {
 	 */
 	private getJoystickEvent(): JoystickEvent {
 		let jsEvent: JoystickEvent = new JoystickEvent();
-		let y = this.centerPoint.localToGlobal().y - this.localToGlobal().y - this.height / 2;
-		let x = this.centerPoint.localToGlobal().x - this.localToGlobal().x - this.width / 2;
+		let y = this.centerPoint.localToGlobal().y - this.localToGlobal().y - this.height / 2 + this.centerPoint.height / 2;
+		let x = this.centerPoint.localToGlobal().x - this.localToGlobal().x - this.width / 2 + this.centerPoint.width / 2;
 		jsEvent.dirAngle = Math.atan2(y, x);
 		jsEvent.strength = Math.sqrt(y * y + x * x);
 		return jsEvent;

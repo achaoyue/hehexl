@@ -16,7 +16,6 @@ class GameApp extends eui.Component implements eui.UIComponent {
 
 	public constructor() {
 		super();
-		this.skinName = "GameAppSkin";
 	}
 
 	protected partAdded(partName: string, instance: any): void {

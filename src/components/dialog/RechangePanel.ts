@@ -1,3 +1,6 @@
+/**
+ * 充值
+ */
 class RechangePanel extends eui.Component implements eui.UIComponent {
 
 	public radio: eui.RadioButton;

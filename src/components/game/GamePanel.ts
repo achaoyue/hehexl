@@ -41,8 +41,8 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		if (this.jsEvent === undefined || this.jsEvent.strength == 0) {
 			return;
 		} else {
-			this.selfSprit.y += Math.sin(this.jsEvent.dirAngle) * 3 * this.jsEvent.strength / 20;
-			this.selfSprit.x += Math.cos(this.jsEvent.dirAngle) * 3 * this.jsEvent.strength / 20;
+			this.selfSprit.y += Math.sin(this.jsEvent.dirAngle)  * this.jsEvent.strength / this.vJoystick.maxStrength * 10;
+			this.selfSprit.x += Math.cos(this.jsEvent.dirAngle)  * this.jsEvent.strength / this.vJoystick.maxStrength * 10;
 		}
 	}
 
