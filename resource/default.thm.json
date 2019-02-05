@@ -27,6 +27,7 @@
 		"resource/eui_skins/dialog/RechangePanel.exml",
 		"resource/eui_skins/dialog/WithdrawPanel.exml",
 		"resource/eui_skins/game/GamePanel.exml",
+		"resource/eui_skins/game/GamerUi.exml",
 		"resource/eui_skins/game/VirtualJoystick.exml",
 		"resource/eui_skins/GameApp.exml",
 		"resource/eui_skins/homeTab/HomeTabItem.exml",

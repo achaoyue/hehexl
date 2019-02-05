@@ -1,17 +1,24 @@
 class GamePanel extends eui.Component implements eui.UIComponent {
-
 	public bgGroup: eui.Group;
 	public rect: eui.Rect;
 	public vJoystick: VirtualJoystick;
-	public selfSprit: eui.Image;
-	public btnTest: eui.Button;
 	public btn_close: eui.Button;
+	public btnFire: eui.Button;
+	public waitGroup: eui.Group;
+	public loginText: eui.Label;
+	public btnStopWait: eui.Button;
 
-//------------以下为自定义变量-------------
+
+
+	//------------以下为自定义变量-------------
 	/**
 	 * 玩家
 	 */
-	private sprites:Array<GamerSprite>;
+	private sprites: Array<GamerSprite> = [];
+	/**
+	 * 子弹
+	 */
+	private bombs: Array<BombSprite> = [];
 	/**
 	 * 当前移动状态
 	 */
@@ -24,7 +31,9 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	 * websocket
 	 */
 	private socket: egret.WebSocket;
+	private timer: egret.Timer;
 
+	private me: GamerSprite;
 
 
 	public constructor() {
@@ -40,55 +49,62 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		this.vJoystick.setFixed(false, this.bgGroup);
 		this.vJoystick.addMoveListener(this.changeMove, this);
 		//移动精灵
-		this.addEventListener(egret.Event.ENTER_FRAME, this.moveSprite, this);
+		// this.addEventListener(egret.Event.ENTER_FRAME, this.moveSprite, this);
+		// this.timer = new egret.Timer(50, 0);
+		// this.timer.addEventListener(egret.TimerEvent.TIMER, this.moveSprite, this);
+		// this.timer.start();
 		//发射子弹
-		this.btnTest.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFire, this);
+		this.btnFire.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFire, this);
 		//初始化socket
 		this.initWebsocket();
-		let gamer1 = new GamerSprite(RES.getRes("asserts_json.s1"))
-		gamer1.x = 100;
-		gamer1.y=100;
-		this.addChild(gamer1);
+		this.btnStopWait.addEventListener(egret.TouchEvent.TOUCH_TAP, this.stopWait, this);
+		this.btn_close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
 
-		let gamer2 = new GamerSprite(RES.getRes("asserts_json.s1"))
-		gamer2.x = 200;
-		gamer2.y = 200;
-		this.addChild(gamer2);
+		// let xxx = new BombSprite(RES.getRes("stone_png"), 90);
+		// this.addChild(xxx)
+		// window['xxx'] = xxx;
 
-		this.sprites = [gamer1,gamer2];
+		// this.addEventListener(egret.Event.ENTER_FRAME, function(){window["xxx"].x++;window["xxx"].y+=2;}, this);
+		// setInterval(function(){window["xxx"].x++;window["xxx"].y+=2;},50)
 	}
 
 	private onFire(event: egret.TouchEvent) {
-		console.log("click");
-		event.stopPropagation();
-		event.preventDefault();
+		let msg: WebsocketRequest = new WebsocketRequest();
+		msg.messageType = RequestMessageTypeEnum.Fire;
+		msg.data = new FireEvent()
+		this.sendMsg(msg);
 	}
 	private changeMove(event: JoystickEvent) {
-		console.log(event.dirAngle * 180 / 3.14);
-		// this.jsEvent = event;
-		let moveEvent:MoveChangeEvent = new MoveChangeEvent();
+		// console.log(event.dirAngle * 180 / 3.14);
+		this.jsEvent = event;
+		let moveEvent: MoveChangeEvent = new MoveChangeEvent();
 		moveEvent.dirAngel = Math.floor(event.dirAngle * 100) / 100;
-		moveEvent.speed = Math.floor(event.strength/(this.vJoystick.width/2)*5*100)/100;
-		let msg:WebsocketRequest = new WebsocketRequest();
+		moveEvent.speed = Math.floor(event.strength / (this.vJoystick.width / 2) * 5 * 100) / 100;
+
+		let msg: WebsocketRequest = new WebsocketRequest();
 		msg.messageType = RequestMessageTypeEnum.Move;
 		msg.data = moveEvent;
-		this.socket.writeUTF(JSON.stringify(msg));
+		this.sendMsg(msg)
+		if (event.strength != 0) {
+			this.me.dir(event.dirAngle * 180 / Math.PI)
+		}
 	}
 
 	private moveSprite() {
 		if (this.jsEvent === undefined || this.jsEvent.strength === undefined) {
 			return;
 		} else {
-			this.selfSprit.y += Math.sin(this.jsEvent.dirAngle) * this.jsEvent.strength / this.vJoystick.maxStrength * 10;
-			this.selfSprit.x += Math.cos(this.jsEvent.dirAngle) * this.jsEvent.strength / this.vJoystick.maxStrength * 10;
+			this.sprites[0].y += Math.sin(this.jsEvent.dirAngle) * this.jsEvent.strength / this.vJoystick.maxStrength * 8;
+			this.sprites[0].x += Math.cos(this.jsEvent.dirAngle) * this.jsEvent.strength / this.vJoystick.maxStrength * 8;
 		}
-		
+
 	}
 
 	/**
 	 * onClose 调用完毕后一定要记得delete这个class，不然的话事件派发可能有问题
 	 */
 	private onClose() {
+		this.socket.close();
 		this.parent.removeChild(this);
 	}
 
@@ -104,38 +120,102 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		//添加异常侦听，出现异常会调用此方法
 		this.socket.addEventListener(egret.IOErrorEvent.IO_ERROR, this.onSocketError, this);
 		//连接服务器
-		this.socket.connectByUrl("ws://192.168.99.103:8000?token=X0YzBRIfARFsDIPU3cTukxFsDFRZUxVzAAAFXVBcUhE")
+		this.socket.connectByUrl(GameConfig.instance.gameSocket + StoryTool.getToken())
 	}
 
-	private onReceiveMessage(event:egret.Event){
+	private onReceiveMessage(event: egret.Event) {
 		let msg = this.socket.readUTF();
-		console.log("msg",msg)
-		let msgObj:SocketResponse = JSON.parse(msg);
-		if(msgObj.messageType == ResponseMessageTypeEnum.Room_Status){
+		if(window["on"]){
+			console.log("msg", msg)
+		}
+		let msgObj: SocketResponse = JSON.parse(msg);
+		if (msgObj.messageType == ResponseMessageTypeEnum.Room_Status) {
 			this.updateSpriteStatus(msgObj.data);
+		} else if (msgObj.messageType == ResponseMessageTypeEnum.LOGIN) {
+			this.onLoginMsg(msgObj.data);
+		} else if (msgObj.messageType == ResponseMessageTypeEnum.START_GAME) {
+			this.onStartGame(msgObj.data)
 		}
 	}
-	private onSocketOpen(){
+	private onSocketOpen() {
 		console.log("connect")
-		this.socket.writeUTF('{"messageType":5}');
+		setTimeout(function(){this.socket.writeUTF('{"messageType":5}');}.bind(this),1000)
 		this.socket.flush();
 	}
-	private onSocketClose(){
+	private onSocketClose() {
 
 	}
-	private onSocketError(){
+	private onSocketError() {
 
 	}
 
-	private updateSpriteStatus(event:GameStartEvent){
-		if(event.bombs instanceof Array){
-
+	private updateSpriteStatus(event: GameStartEvent) {
+		let i = 0;
+		console.log("收到消息，开始更新界面",this.numChildren,this.bombs.length,event.bombs == undefined?0:event.bombs.length,)
+		for (i; event.bombs != undefined && i < this.bombs.length && i < event.bombs.length; i++) {
+			this.bombs[i].x = event.bombs[i].x;
+			this.bombs[i].y = event.bombs[i].y;
+			console.log("修改子弹位置",this.bombs[i].id,this.bombs[i].x,this.bombs[i].y)
 		}
-		if(event.gamers instanceof Array){
-			for(let i = 0;i<event.gamers.length;i++){
-				this.sprites[i].x = event.gamers[i].x;
-				this.sprites[i].y = event.gamers[i].y;
+		//添加新增的
+		for (; event.bombs != undefined && i < event.bombs.length; i++) {
+			let bomb: BombSprite = new BombSprite(RES.getRes("stone_png"), this.sprites[0].dirAngle)
+			let point  = this.globalToLocal()
+			bomb.x = event.bombs[i].x;
+			bomb.y = event.bombs[i].y;
+			bomb.rotation = Math.atan2(event.bombs[i].y - bomb.y, event.bombs[i].x - bomb.x) * 180 / Math.PI + 90;
+			this.bombs.push(bomb);
+			this.addChild(bomb);
+			console.log("add gamer over", this.contains(bomb), bomb.width, bomb.height,bomb.x,bomb.y)
+		}
+		//删除出边界的
+		for (let i=0; i<this.bombs.length;i++) {
+			let item = this.bombs[i]
+			if (this.contains(item)
+				&& (item.x <= 0 || item.y <= 0 || item.x >= this.width || item.y >= this.height)) {
+				this.removeChild(item);
+				this.bombs.splice(i,1);
+				console.log("删除元素",item.id)
 			}
 		}
+		//更新玩家
+		for (let i = 0; event.gamers != undefined && i < event.gamers.length; i++) {
+			if (this.sprites[i].id != userInfo.id && this.sprites[i].x != event.gamers[i].x && this.sprites[i].y != event.gamers[i].y) { // 对方玩家在移动过程中修改方向，停止后不改变方向
+				this.sprites[i].rotation = Math.atan2(event.gamers[i].y - this.sprites[i].y, event.gamers[i].x - this.sprites[i].x) * 180 / Math.PI + 90;
+			}
+			this.sprites[i].x = event.gamers[i].x;
+			this.sprites[i].y = event.gamers[i].y;
+		}
+	}
+	public log(){
+
+	}
+	private onLoginMsg(data: boolean) {
+		if (data === true) {
+
+		} else {
+			this.loginText.text = "登录失败！"
+		}
+	}
+	private onStartGame(data: Array<number>) {
+		for (let gameId of data) {
+			let gamer = new GamerSprite(RES.getRes("wandou_png"))
+			gamer.x = 100;
+			gamer.y = 100;
+			gamer.id = gameId;
+			if (gamer.id == userInfo.id) {
+				this.me = gamer;
+			}
+			this.addChild(gamer);
+			this.sprites.push(gamer);
+		}
+		this.waitGroup.visible = false;
+	}
+	private stopWait() {
+		this.socket.close();
+		this.parent.removeChild(this);
+	}
+	private sendMsg(msg: WebsocketRequest) {
+		this.socket.writeUTF(JSON.stringify(msg));
 	}
 }

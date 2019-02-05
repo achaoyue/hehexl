@@ -8,7 +8,7 @@ declare interface Platform {
 
     getUserInfo(): Promise<any>;
 
-    login(): Promise<any>
+    login(name,pwd): Promise<any>
 
 }
 
@@ -16,7 +16,7 @@ class DebugPlatform implements Platform {
     async getUserInfo() {
         return { nickName: "username" }
     }
-    async login() {
+    async login(name,pwd) {
 
     }
 }
@@ -27,14 +27,39 @@ if (!window.platform) {
 }
 
 
+class MyLoginPlatform implements Platform {
+    async getUserInfo() {
+        return {loginId:StoryTool.getItem("loginId","common_"),token:StoryTool.getToken(),id:StoryTool.getItem("ssid","common_")}
+    }
+    async login(name,pwd) {
+        console.log(name,pwd);
+        return new Promise(function (resolve, regect) {
+            let request: egret.HttpRequest = new egret.HttpRequest();
+            request.responseType = egret.HttpResponseType.TEXT;
+            request.open(GameConfig.instance.host + GameConfig.instance.loginUrl + "?name="+name+"&pwd="+pwd, egret.HttpMethod.GET);
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send();
+            request.addEventListener(egret.Event.COMPLETE, function(event:egret.Event){resolve(JSON.parse(event.currentTarget.response))}, this);
+            request.addEventListener(egret.IOErrorEvent.IO_ERROR, function(event:egret.Event){regect(event)}, this);
+        })
+    }
+}
+
+class UserInfo{
+    public id;
+    public loginId;
+    public token;
+}
 
 declare let platform: Platform;
+declare let userInfo: UserInfo;
 
 declare interface Window {
 
     platform: Platform
 }
 
+window.platform = new MyLoginPlatform();
 
 
 

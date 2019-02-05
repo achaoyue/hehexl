@@ -4,4 +4,5 @@ enum ResponseMessageTypeEnum {
     LOGIN = 3,
     ENTER_ROOM =4,
     CREATE_ROOM = 5,
+    START_GAME = 6,//开始游戏
 }

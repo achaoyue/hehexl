@@ -1,0 +1,5 @@
+class FireEvent {
+	
+	public constructor() {
+	}
+}

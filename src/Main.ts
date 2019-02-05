@@ -61,9 +61,22 @@ class Main extends eui.UILayer {
         await this.loadResource()
         this.createGameScene2();
         const result = await RES.getResAsync("description_json")
-        this.startAnimation(result);
-        await platform.login();
-        const userInfo = await platform.getUserInfo();
+        // this.startAnimation(result);
+        let loginId = StoryTool.getItem("loginId","common_");
+        let pwd = StoryTool.getItem("pwd","common_")
+        await platform.login(loginId,pwd).then(function(data){
+            if(data.code != 0){
+                throw new Error("登录存在问题，返回值"+JSON.stringify(data))
+            }
+            data = data.data;
+            StoryTool.setItem("loginId",data.loginId);
+            StoryTool.setItem("ssid",data.id);
+            StoryTool.setToken(data.token);
+        }).catch(function(e){
+            console.log("登录失败",e)
+        });
+        userInfo = await platform.getUserInfo();
+        
         console.log(userInfo);
 
     }

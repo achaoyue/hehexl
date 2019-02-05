@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="GamerUi" xmlns:e="http://ns.egret.com/eui" minHeight="80" minWidth="80">
+	<e:Image width="80" height="80" x="0" y="0" source="wandou_png"/>
+	<e:Image x="44.04" y="37.86" source="saomiao_png" height="150" anchorOffsetX="49.04" anchorOffsetY="187.86"/>
+</e:Skin>

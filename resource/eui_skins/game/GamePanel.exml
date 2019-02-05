@@ -2,14 +2,25 @@
 <e:Skin class="GamePanelSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
 	<w:Config id="1688044f4e0" ></w:Config>
 	<e:Group id="bgGroup" width="640" height="1136" x="0" y="0">
-		<e:Rect id="rect" width="640" height="1136" x="0" y="0" fillColor="0xd39898" touchChildren="false" scaleX="1" scaleY="1"/>
+		<e:Rect id="rect" width="640" height="1136" x="0" y="0" fillColor="0xd39898" touchChildren="false" scaleX="1" scaleY="1" visible="false"/>
 		<e:Image width="100%" height="100%" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="grass_jpg" fillMode="repeat" visible="false"/>
 		<ns1:VirtualJoystick id="vJoystick" width="260.6" height="260.6" x="20.65" y="845.4" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
-		<e:Image id="selfSprit" source="asserts_json.s1" x="183.00000000000003" y="545" anchorOffsetX="52.05" width="20" anchorOffsetY="0.23" height="20" scaleX="1" scaleY="1"/>
-		<e:Image source="plant_png" x="267" y="403"/>
-		<e:Group width="226" height="104" x="393" y="1002" anchorOffsetX="0" anchorOffsetY="0">
-			<e:Button id="btnTest" label="Button" y="27" x="58" touchChildren="true" scaleX="1" scaleY="1"/>
-		</e:Group>
-		<e:Button id="btn_close" label="关闭" x="563" y="22.52" anchorOffsetX="0" width="56" height="56"/>
+	</e:Group>
+	<e:Group width="226" height="193.33" x="393" y="912.67" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Button id="btnFire" label="" y="24" x="40.34" touchChildren="true" scaleX="1" scaleY="1" anchorOffsetX="0" width="145.33" anchorOffsetY="0" height="145.33">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="fire_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btn_close" label="关闭" x="170" y="-890.15" anchorOffsetX="0" width="56" height="56" scaleX="1" scaleY="1"/>
+	</e:Group>
+	<e:Group id="waitGroup" width="476" height="200" x="82" y="336" anchorOffsetX="0">
+		<e:Rect width="640" height="1134" x="-82" y="-336" anchorOffsetX="0" anchorOffsetY="0" fillColor="0x307f0e" fillAlpha="0.4"/>
+		<e:Rect width="100%" height="100%" x="0" y="0"/>
+		<e:Label id="loginText" text="匹配中。。。。" x="68.95" y="40" fontFamily="SimSun"/>
+		<e:Button id="btnStopWait" label="取消等待" x="324" y="128"/>
 	</e:Group>
 </e:Skin>

@@ -6,7 +6,7 @@
     "guideLines": [
       {
         "type": "h",
-        "pos": 84
+        "pos": -28.788
       }
     ],
     "guideLinesEnabled": true,
@@ -24,7 +24,7 @@
     "parentPath": ""
   },
   "global": {
-    "globalAutoLayerMarkEnable": true,
+    "globalAutoLayerMarkEnable": false,
     "gridColor": 5000268,
     "gridEnabled": false,
     "gridSize": 20

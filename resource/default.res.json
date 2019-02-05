@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,asserts_json,pangzi_png,banner_png,main_bg_jpg,grass_jpg,plant_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,asserts_json,pangzi_png,banner_png,main_bg_jpg,grass_jpg,plant_png,play_png,grass_bg_jpg,tree1_png,tree2_png,wandou_png,saomiao_png,fire_png,stone_png",
 			"name": "preload"
 		}
 	],
@@ -166,6 +166,46 @@
 			"url": "assets/mwy/plant.png",
 			"type": "image",
 			"name": "plant_png"
+		},
+		{
+			"name": "play_png",
+			"type": "image",
+			"url": "assets/mwy/play.png"
+		},
+		{
+			"name": "grass_bg_jpg",
+			"type": "image",
+			"url": "assets/mwy/grass_bg.jpg"
+		},
+		{
+			"name": "tree1_png",
+			"type": "image",
+			"url": "assets/mwy/tree1.png"
+		},
+		{
+			"name": "tree2_png",
+			"type": "image",
+			"url": "assets/mwy/tree2.png"
+		},
+		{
+			"name": "wandou_png",
+			"type": "image",
+			"url": "assets/mwy/wandou.png"
+		},
+		{
+			"name": "saomiao_png",
+			"type": "image",
+			"url": "assets/mwy/saomiao.png"
+		},
+		{
+			"name": "fire_png",
+			"type": "image",
+			"url": "assets/mwy/fire.png"
+		},
+		{
+			"name": "stone_png",
+			"type": "image",
+			"url": "assets/mwy/stone.png"
 		}
 	]
 }
