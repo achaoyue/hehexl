@@ -159,7 +159,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		}
 		//添加新增的
 		for (; event.bombs != undefined && i < event.bombs.length; i++) {
-			let bomb: BombSprite = new BombSprite(RES.getRes("stone_png"), this.sprites[0].dirAngle)
+			let bomb: BombSprite = new BombSprite(RES.getRes("stone_png"), 0)
 			let point  = this.globalToLocal()
 			bomb.x = event.bombs[i].x;
 			bomb.y = event.bombs[i].y;
