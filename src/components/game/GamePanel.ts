@@ -2,11 +2,14 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	public bgGroup: eui.Group;
 	public rect: eui.Rect;
 	public vJoystick: VirtualJoystick;
-	public btn_close: eui.Button;
+	public meScore: eui.Label;
+	public oScore: eui.Label;
 	public btnFire: eui.Button;
+	public btn_close: eui.Button;
 	public waitGroup: eui.Group;
 	public loginText: eui.Label;
 	public btnStopWait: eui.Button;
+
 
 
 
@@ -60,12 +63,6 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		this.btnStopWait.addEventListener(egret.TouchEvent.TOUCH_TAP, this.stopWait, this);
 		this.btn_close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
 
-		// let xxx = new BombSprite(RES.getRes("stone_png"), 90);
-		// this.addChild(xxx)
-		// window['xxx'] = xxx;
-
-		// this.addEventListener(egret.Event.ENTER_FRAME, function(){window["xxx"].x++;window["xxx"].y+=2;}, this);
-		// setInterval(function(){window["xxx"].x++;window["xxx"].y+=2;},50)
 	}
 
 	private onFire(event: egret.TouchEvent) {
@@ -75,7 +72,6 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		this.sendMsg(msg);
 	}
 	private changeMove(event: JoystickEvent) {
-		// console.log(event.dirAngle * 180 / 3.14);
 		this.jsEvent = event;
 		let moveEvent: MoveChangeEvent = new MoveChangeEvent();
 		moveEvent.dirAngel = Math.floor(event.dirAngle * 100) / 100;
@@ -125,7 +121,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 
 	private onReceiveMessage(event: egret.Event) {
 		let msg = this.socket.readUTF();
-		if(window["on"]){
+		if (window["on"]) {
 			console.log("msg", msg)
 		}
 		let msgObj: SocketResponse = JSON.parse(msg);
@@ -139,7 +135,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	}
 	private onSocketOpen() {
 		console.log("connect")
-		setTimeout(function(){this.socket.writeUTF('{"messageType":5}');}.bind(this),1000)
+		setTimeout(function () { this.socket.writeUTF('{"messageType":5}'); }.bind(this), 1000)
 		this.socket.flush();
 	}
 	private onSocketClose() {
@@ -151,31 +147,27 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 
 	private updateSpriteStatus(event: GameStartEvent) {
 		let i = 0;
-		console.log("收到消息，开始更新界面",this.numChildren,this.bombs.length,event.bombs == undefined?0:event.bombs.length,)
 		for (i; event.bombs != undefined && i < this.bombs.length && i < event.bombs.length; i++) {
 			this.bombs[i].x = event.bombs[i].x;
 			this.bombs[i].y = event.bombs[i].y;
-			console.log("修改子弹位置",this.bombs[i].id,this.bombs[i].x,this.bombs[i].y)
 		}
 		//添加新增的
 		for (; event.bombs != undefined && i < event.bombs.length; i++) {
 			let bomb: BombSprite = new BombSprite(RES.getRes("stone_png"), 0)
-			let point  = this.globalToLocal()
+			let point = this.globalToLocal()
 			bomb.x = event.bombs[i].x;
 			bomb.y = event.bombs[i].y;
 			bomb.rotation = Math.atan2(event.bombs[i].y - bomb.y, event.bombs[i].x - bomb.x) * 180 / Math.PI + 90;
 			this.bombs.push(bomb);
 			this.addChild(bomb);
-			console.log("add gamer over", this.contains(bomb), bomb.width, bomb.height,bomb.x,bomb.y)
 		}
 		//删除出边界的
-		for (let i=0; i<this.bombs.length;i++) {
+		for (let i = 0; i < this.bombs.length; i++) {
 			let item = this.bombs[i]
 			if (this.contains(item)
 				&& (item.x <= 0 || item.y <= 0 || item.x >= this.width || item.y >= this.height)) {
 				this.removeChild(item);
-				this.bombs.splice(i,1);
-				console.log("删除元素",item.id)
+				this.bombs.splice(i, 1);
 			}
 		}
 		//更新玩家
@@ -183,11 +175,17 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			if (this.sprites[i].id != userInfo.id && this.sprites[i].x != event.gamers[i].x && this.sprites[i].y != event.gamers[i].y) { // 对方玩家在移动过程中修改方向，停止后不改变方向
 				this.sprites[i].rotation = Math.atan2(event.gamers[i].y - this.sprites[i].y, event.gamers[i].x - this.sprites[i].x) * 180 / Math.PI + 90;
 			}
+			if(this.sprites[i].id == userInfo.id){
+				this.meScore.text = (event.gamers[i].score + "分");
+			}
+			else{
+				this.oScore.text = event.gamers[i].score + "分";
+			}
 			this.sprites[i].x = event.gamers[i].x;
 			this.sprites[i].y = event.gamers[i].y;
 		}
 	}
-	public log(){
+	public log() {
 
 	}
 	private onLoginMsg(data: boolean) {

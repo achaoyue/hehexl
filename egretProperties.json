@@ -27,5 +27,11 @@
     {
       "name": "promise"
     }
-  ]
+  ],
+  "targets": {
+    "android": {
+      "appname": "qwe",
+      "packagename": "com.companyname"
+    }
+  }
 }

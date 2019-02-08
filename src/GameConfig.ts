@@ -14,7 +14,9 @@ class GameConfig {
 		GameConfig.instance = this;
 	}
 	private static online = {
-		host: ""
+		host: "http://lelefans.top:8080/",
+		loginUrl: "lele/game/user/login",
+		gameSocket: "ws://lelefans.top:8000?token="
 	}
 	private static local = {
 		host: "http://192.168.99.103/",
