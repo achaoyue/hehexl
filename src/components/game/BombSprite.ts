@@ -1,6 +1,7 @@
 class BombSprite extends egret.Sprite {
 	public img: egret.Bitmap;
 	public id:number
+	public toRemove:boolean
 
 	public constructor(texture:egret.Texture,dir:number) {
 		super()

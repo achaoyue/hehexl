@@ -24,7 +24,7 @@ class GamerSprite extends egret.Sprite {
 		this.img = new egret.Bitmap();
 		this.img.texture = txtr;
 		this.img.width = 80;
-		this.img.height = 80;
+		this.img.height = 110;
 		this.addChild(this.img);
 
 		this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);

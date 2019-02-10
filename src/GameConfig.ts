@@ -19,7 +19,7 @@ class GameConfig {
 		gameSocket: "ws://lelefans.top:8000?token="
 	}
 	private static local = {
-		host: "http://192.168.99.103/",
+		host: "http://192.168.99.103:8080/",
 		loginUrl: "lele/game/user/login",
 		gameSocket: "ws://192.168.99.103:8000?token="
 	}

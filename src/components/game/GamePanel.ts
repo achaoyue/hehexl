@@ -51,11 +51,6 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		super.childrenCreated();
 		this.vJoystick.setFixed(false, this.bgGroup);
 		this.vJoystick.addMoveListener(this.changeMove, this);
-		//移动精灵
-		// this.addEventListener(egret.Event.ENTER_FRAME, this.moveSprite, this);
-		// this.timer = new egret.Timer(50, 0);
-		// this.timer.addEventListener(egret.TimerEvent.TIMER, this.moveSprite, this);
-		// this.timer.start();
 		//发射子弹
 		this.btnFire.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFire, this);
 		//初始化socket
@@ -82,7 +77,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		msg.data = moveEvent;
 		this.sendMsg(msg)
 		if (event.strength != 0) {
-			this.me.dir(event.dirAngle * 180 / Math.PI)
+			this.me.rotation = (event.dirAngle * 180 / Math.PI)+90
 		}
 	}
 
@@ -121,9 +116,6 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 
 	private onReceiveMessage(event: egret.Event) {
 		let msg = this.socket.readUTF();
-		if (window["on"]) {
-			console.log("msg", msg)
-		}
 		let msgObj: SocketResponse = JSON.parse(msg);
 		if (msgObj.messageType == ResponseMessageTypeEnum.Room_Status) {
 			this.updateSpriteStatus(msgObj.data);
@@ -131,6 +123,8 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			this.onLoginMsg(msgObj.data);
 		} else if (msgObj.messageType == ResponseMessageTypeEnum.START_GAME) {
 			this.onStartGame(msgObj.data)
+		}else if(msgObj.messageType == ResponseMessageTypeEnum.GAME_OVER){
+			this.onGameOver(msgObj.data)
 		}
 	}
 	private onSocketOpen() {
@@ -150,7 +144,9 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		for (i; event.bombs != undefined && i < this.bombs.length && i < event.bombs.length; i++) {
 			this.bombs[i].x = event.bombs[i].x;
 			this.bombs[i].y = event.bombs[i].y;
+			this.bombs[i].toRemove = event.bombs[i].remove;
 		}
+		//console.log(this.numChildren,this.bombs.length)
 		//添加新增的
 		for (; event.bombs != undefined && i < event.bombs.length; i++) {
 			let bomb: BombSprite = new BombSprite(RES.getRes("stone_png"), 0)
@@ -160,12 +156,12 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			bomb.rotation = Math.atan2(event.bombs[i].y - bomb.y, event.bombs[i].x - bomb.x) * 180 / Math.PI + 90;
 			this.bombs.push(bomb);
 			this.addChild(bomb);
-		}
+		}                                                                                                                                     
 		//删除出边界的
 		for (let i = 0; i < this.bombs.length; i++) {
 			let item = this.bombs[i]
 			if (this.contains(item)
-				&& (item.x <= 0 || item.y <= 0 || item.x >= this.width || item.y >= this.height)) {
+				&& (item.x <= 0 || item.y <= 0 || item.x >= this.width || item.y >= this.height || this.bombs[i].toRemove === true)) {
 				this.removeChild(item);
 				this.bombs.splice(i, 1);
 			}
@@ -197,7 +193,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	}
 	private onStartGame(data: Array<number>) {
 		for (let gameId of data) {
-			let gamer = new GamerSprite(RES.getRes("wandou_png"))
+			let gamer = new GamerSprite(RES.getRes("guaiwu_png"))
 			gamer.x = 100;
 			gamer.y = 100;
 			gamer.id = gameId;
@@ -205,9 +201,21 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 				this.me = gamer;
 			}
 			this.addChild(gamer);
+			this.setChildIndex(gamer,1)
 			this.sprites.push(gamer);
 		}
 		this.waitGroup.visible = false;
+	}
+	private onGameOver(data){
+		if(data != this.me.id){
+				this.loginText.text = "胜利"
+			}else if(data == "close"){
+				this.loginText.text="链接断开了"
+			}else if(data == this.me.id){
+				this.loginText.text="你还需努力"
+			}
+			this.btnStopWait.label = "关闭";
+			this.waitGroup.visible = true;
 	}
 	private stopWait() {
 		this.socket.close();
