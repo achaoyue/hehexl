@@ -1,67 +1,72 @@
 {
-  "1687881521a": {
-    "path": "components/GameApp.ts",
-    "class": "GameApp",
-    "parentPath": "",
-    "guideLines": [
-      {
-        "type": "h",
-        "pos": -28.788
-      }
-    ],
-    "guideLinesEnabled": true,
-    "backgroundX": 0,
-    "backgroundY": 0,
-    "backgroundWidth": -1,
-    "backgroundHeight": -1,
-    "useBgImage": true,
-    "useBgColor": true,
-    "backgroundAlpha": 100
-  },
-  "1687a79fd32": {
-    "path": "components/HomeTabPanel.ts",
-    "class": "HomeTabPanel",
-    "parentPath": ""
-  },
-  "global": {
-    "globalAutoLayerMarkEnable": false,
-    "gridColor": 5000268,
-    "gridEnabled": false,
-    "gridSize": 20
-  },
-  "1687e467408": {
-    "guideLinesEnabled": true,
-    "guideLines": [
-      {
-        "type": "v",
-        "pos": 63
-      },
-      {
-        "type": "h",
-        "pos": 26
-      }
-    ]
-  },
-  "1687ea1d209": {
-    "path": "components/dialog/WithdrawPanel.ts",
-    "class": "WithdrawPanel",
-    "parentPath": ""
-  },
-  "1688044f4e0": {
-    "path": "components/game/GamePanel.ts",
-    "class": "GamePanel",
-    "parentPath": "",
-    "backgroundX": 0,
-    "backgroundY": 0,
-    "backgroundWidth": -1,
-    "backgroundHeight": -1,
-    "useBgImage": true,
-    "useBgColor": true,
-    "backgroundAlpha": 100
-  },
-  "16880c305db": {
-    "path": "components/game/VirtualJoystick.ts",
-    "class": "VirtualJoystick",
-    "parentPath": ""
-  }
+    "1687881521a": {
+        "path": "components/GameApp.ts",
+        "class": "GameApp",
+        "parentPath": "",
+        "guideLines": [
+            {
+                "type": "h",
+                "pos": -28.788
+            }
+        ],
+        "guideLinesEnabled": true,
+        "backgroundX": 0,
+        "backgroundY": 0,
+        "backgroundWidth": -1,
+        "backgroundHeight": -1,
+        "useBgImage": true,
+        "useBgColor": true,
+        "backgroundAlpha": 100
+    },
+    "1687a79fd32": {
+        "path": "components/HomeTabPanel.ts",
+        "class": "HomeTabPanel",
+        "parentPath": ""
+    },
+    "global": {
+        "globalAutoLayerMarkEnable": false,
+        "gridColor": 5000268,
+        "gridEnabled": false,
+        "gridSize": 20
+    },
+    "1687e467408": {
+        "guideLinesEnabled": true,
+        "guideLines": [
+            {
+                "type": "v",
+                "pos": 63
+            },
+            {
+                "type": "h",
+                "pos": 26
+            }
+        ]
+    },
+    "1687ea1d209": {
+        "path": "components/dialog/WithdrawPanel.ts",
+        "class": "WithdrawPanel",
+        "parentPath": ""
+    },
+    "1688044f4e0": {
+        "path": "components/game/GamePanel.ts",
+        "class": "GamePanel",
+        "parentPath": "",
+        "backgroundX": 0,
+        "backgroundY": 0,
+        "backgroundWidth": -1,
+        "backgroundHeight": -1,
+        "useBgImage": true,
+        "useBgColor": true,
+        "backgroundAlpha": 100
+    },
+    "16880c305db": {
+        "path": "components/game/VirtualJoystick.ts",
+        "class": "VirtualJoystick",
+        "parentPath": ""
+    },
+    "168dc60ce42": {
+        "path": "components/game/GiftSprite.ts",
+        "class": "GiftSprite",
+        "parentPath": ""
+    }
 }

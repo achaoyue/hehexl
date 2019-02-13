@@ -11,4 +11,8 @@ class GameStartEvent{
      * 子弹
      */
     public bombs:Array<Bomb>;
+    /**
+     * 彩蛋
+     */
+    public gift:Gift;
 }

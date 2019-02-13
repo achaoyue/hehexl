@@ -18,7 +18,8 @@
 		"RechangePanel": "resource/eui_skins/dialog/RechangePanel.exml",
 		"WithdrawPanel": "resource/eui_skins/dialog/WithdrawPanel.exml",
 		"GamePanel": "resource/eui_skins/game/GamePanel.exml",
-		"VirtualJoystick": "resource/eui_skins/game/VirtualJoystick.exml"
+		"VirtualJoystick": "resource/eui_skins/game/VirtualJoystick.exml",
+		"GiftSprite": "resource/eui_skins/game/GiftSprite.exml"
 	},
 	"autoGenerateExmlsList": true,
 	"exmls": [
@@ -28,6 +29,7 @@
 		"resource/eui_skins/dialog/WithdrawPanel.exml",
 		"resource/eui_skins/game/GamePanel.exml",
 		"resource/eui_skins/game/GamerUi.exml",
+		"resource/eui_skins/game/GiftSprite.exml",
 		"resource/eui_skins/game/VirtualJoystick.exml",
 		"resource/eui_skins/GameApp.exml",
 		"resource/eui_skins/homeTab/HomeTabItem.exml",

@@ -37,6 +37,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	private timer: egret.Timer;
 
 	private me: GamerSprite;
+	private gift: GiftSprite;
 
 
 	public constructor() {
@@ -57,7 +58,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		this.initWebsocket();
 		this.btnStopWait.addEventListener(egret.TouchEvent.TOUCH_TAP, this.stopWait, this);
 		this.btn_close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
-
+		// this.buildGift(100, 100, 2000)
 	}
 
 	private onFire(event: egret.TouchEvent) {
@@ -77,7 +78,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		msg.data = moveEvent;
 		this.sendMsg(msg)
 		if (event.strength != 0) {
-			this.me.rotation = (event.dirAngle * 180 / Math.PI)+90
+			this.me.rotation = (event.dirAngle * 180 / Math.PI) + 90
 		}
 	}
 
@@ -88,7 +89,6 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			this.sprites[0].y += Math.sin(this.jsEvent.dirAngle) * this.jsEvent.strength / this.vJoystick.maxStrength * 8;
 			this.sprites[0].x += Math.cos(this.jsEvent.dirAngle) * this.jsEvent.strength / this.vJoystick.maxStrength * 8;
 		}
-
 	}
 
 	/**
@@ -123,7 +123,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			this.onLoginMsg(msgObj.data);
 		} else if (msgObj.messageType == ResponseMessageTypeEnum.START_GAME) {
 			this.onStartGame(msgObj.data)
-		}else if(msgObj.messageType == ResponseMessageTypeEnum.GAME_OVER){
+		} else if (msgObj.messageType == ResponseMessageTypeEnum.GAME_OVER) {
 			this.onGameOver(msgObj.data)
 		}
 	}
@@ -133,10 +133,10 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		this.socket.flush();
 	}
 	private onSocketClose() {
-
+		this.onGameOver("close");
 	}
 	private onSocketError() {
-
+		this.onGameOver("close");
 	}
 
 	private updateSpriteStatus(event: GameStartEvent) {
@@ -156,7 +156,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			bomb.rotation = Math.atan2(event.bombs[i].y - bomb.y, event.bombs[i].x - bomb.x) * 180 / Math.PI + 90;
 			this.bombs.push(bomb);
 			this.addChild(bomb);
-		}                                                                                                                                     
+		}
 		//删除出边界的
 		for (let i = 0; i < this.bombs.length; i++) {
 			let item = this.bombs[i]
@@ -166,15 +166,25 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 				this.bombs.splice(i, 1);
 			}
 		}
+		//添加或移除礼物
+		if (event.gift != undefined) {
+			console.log(event.gift, new Date().getTime() - event.gift.time);
+			if (event.gift.remove == true && this.gift != null) {
+				this.removeChild(this.gift);
+				this.gift = null;
+			} else if (event.gift.remove == false && this.gift == null) {
+				this.buildGift(event.gift.x, event.gift.y, event.gift.time);
+			}
+		}
 		//更新玩家
 		for (let i = 0; event.gamers != undefined && i < event.gamers.length; i++) {
 			if (this.sprites[i].id != userInfo.id && this.sprites[i].x != event.gamers[i].x && this.sprites[i].y != event.gamers[i].y) { // 对方玩家在移动过程中修改方向，停止后不改变方向
 				this.sprites[i].rotation = Math.atan2(event.gamers[i].y - this.sprites[i].y, event.gamers[i].x - this.sprites[i].x) * 180 / Math.PI + 90;
 			}
-			if(this.sprites[i].id == userInfo.id){
+			if (this.sprites[i].id == userInfo.id) {
 				this.meScore.text = (event.gamers[i].score + "分");
 			}
-			else{
+			else {
 				this.oScore.text = event.gamers[i].score + "分";
 			}
 			this.sprites[i].x = event.gamers[i].x;
@@ -201,21 +211,30 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 				this.me = gamer;
 			}
 			this.addChild(gamer);
-			this.setChildIndex(gamer,1)
+			this.setChildIndex(gamer, 1)
 			this.sprites.push(gamer);
 		}
 		this.waitGroup.visible = false;
 	}
-	private onGameOver(data){
-		if(data != this.me.id){
-				this.loginText.text = "胜利"
-			}else if(data == "close"){
-				this.loginText.text="链接断开了"
-			}else if(data == this.me.id){
-				this.loginText.text="你还需努力"
-			}
-			this.btnStopWait.label = "关闭";
-			this.waitGroup.visible = true;
+	private onGameOver(data) {
+		if (data == "close") {
+			this.loginText.text = "链接断开了"
+		} else if (data == this.me.id) {
+			this.loginText.text = "你还需努力"
+		} else if (data != this.me.id) {
+			this.loginText.text = "胜利"
+		}
+		this.btnStopWait.label = "关闭";
+		this.waitGroup.visible = true;
+	}
+	private buildGift(x: number, y: number, time: number) {
+		this.gift = new GiftSprite();
+		this.gift.width = 40;
+		this.gift.height = 50;
+		this.gift.x = x;
+		this.gift.y = y;
+		this.gift.time = time - new Date().getTime();
+		this.addChild(this.gift)
 	}
 	private stopWait() {
 		this.socket.close();

@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,asserts_json,pangzi_png,banner_png,main_bg_jpg,grass_jpg,plant_png,play_png,grass_bg_jpg,tree1_png,tree2_png,wandou_png,saomiao_png,fire_png,stone_png,egg_png,guaiwu_png,mountain_png,bg_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,asserts_json,pangzi_png,banner_png,main_bg_jpg,grass_jpg,plant_png,play_png,grass_bg_jpg,tree1_png,tree2_png,wandou_png,saomiao_png,fire_png,stone_png,egg_png,guaiwu_png,mountain_png,bg_png,guang1_png,guang2_png",
 			"name": "preload"
 		}
 	],
@@ -226,6 +226,16 @@
 			"name": "bg_png",
 			"type": "image",
 			"url": "assets/mwy/bg.png"
+		},
+		{
+			"name": "guang1_png",
+			"type": "image",
+			"url": "assets/mwy/guang1.png"
+		},
+		{
+			"name": "guang2_png",
+			"type": "image",
+			"url": "assets/mwy/guang2.png"
 		}
 	]
 }

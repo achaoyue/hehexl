@@ -16,13 +16,14 @@
 		"bin-debug/components/game/VirtualJoystick.js",
 		"bin-debug/components/homeTab/HomeTabItem.js",
 		"bin-debug/components/homeTab/HomeTabPanel.js",
-		"bin-debug/components/game/GamerSprite.js",
+		"bin-debug/components/game/GiftSprite.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/components/GameApp.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/LoadingUI.js",
 		"bin-debug/components/game/BombSprite.js",
 		"bin-debug/Main.js",
+		"bin-debug/components/game/GamerSprite.js",
 		"bin-debug/GameConfig.js",
 		"bin-debug/components/game/JoystickEvent.js",
 		"bin-debug/Platform.js",
@@ -36,6 +37,7 @@
 		"bin-debug/socket/request/WebsocketRequest.js",
 		"bin-debug/socket/response/Bomb.js",
 		"bin-debug/socket/response/Gamer.js",
-		"bin-debug/socket/response/GameStartEvent.js"
+		"bin-debug/socket/response/GameStartEvent.js",
+		"bin-debug/socket/response/Gift.js"
 	]
 }

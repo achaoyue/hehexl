@@ -14,6 +14,8 @@ declare class GamePanelSkin extends eui.Skin{
 }
 declare class GamerUi extends eui.Skin{
 }
+declare class GiftSpriteSkin extends eui.Skin{
+}
 declare class VirtualJoystickSkin extends eui.Skin{
 }
 declare class GameAppSkin extends eui.Skin{
