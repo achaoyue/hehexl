@@ -10,6 +10,8 @@ declare class RechangePanelSkin extends eui.Skin{
 }
 declare class WithdrawPanelSkin extends eui.Skin{
 }
+declare class FeedbackSkin extends eui.Skin{
+}
 declare class GamePanelSkin extends eui.Skin{
 }
 declare class GamerUi extends eui.Skin{

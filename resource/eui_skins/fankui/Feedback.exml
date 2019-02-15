@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="FeedbackSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="168e4865ac9" ></w:Config>
+	<e:Group width="640" height="1136" x="0" y="0">
+		<e:Rect width="640" height="1136" x="0" y="0" scaleX="1" scaleY="1" fillColor="0xfc7b7b"/>
+	</e:Group>
+	<e:Group width="640" height="1136" x="0" y="0">
+		<e:Label text="联系方式" x="79.31" y="374.06" scaleX="1" scaleY="1"/>
+		<e:TextInput id="phoneInput" width="317.21" height="39.7" x="242.79" y="369.21" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		<e:Label text="反馈内容" x="80.56" y="449.77" scaleX="1" scaleY="1"/>
+		<e:Button id="btnSubmit" label="提交" x="139.31" y="924.19" anchorOffsetX="0" width="130" anchorOffsetY="0" height="91">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="asserts_json.b_4"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btnCancel" label="取消" x="394.83" y="921.25" anchorOffsetX="0" width="130" anchorOffsetY="0" height="91">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="asserts_json.b_4"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Scroller width="319.7" height="342.42" x="240.3" y="464.35" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Group width="100%" height="100%">
+				<e:Rect width="100%" height="100%" x="0" y="0" fillColor="0xf7efef"/>
+				<e:EditableText id="contentInput" width="100%" height="100%" text="" x="0.7" y="0" textColor="0x1c0101" multiline="true" prompt="这里输入你的建议" promptColor="0x3d3b3b"/>
+			</e:Group>
+		</e:Scroller>
+		<e:Label text="非常感谢你的反馈，我们会根据你的反馈进行改进，一旦采用你的建议，我们现金酬谢。如果你有才能，也欢迎合作，特缺UI设计" x="26.99" y="100" anchorOffsetX="0" width="586" anchorOffsetY="0" height="130"/>
+	</e:Group>
+	<e:Group id="resultGP" width="471.21" height="200" x="88" y="442" anchorOffsetX="0" visible="false">
+		<e:Rect width="640" height="1136" x="-88" y="-442" anchorOffsetX="0" anchorOffsetY="0" fillColor="0xfce8e8" fillAlpha="0.3"/>
+		<e:Rect width="100%" height="100%" x="0" y="0"/>
+		<e:Button id="btnClose" label="关闭" x="331.73" y="126" anchorOffsetX="0" width="115.15" anchorOffsetY="0" height="55.03">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="asserts_json.b_4"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label id="subLabel" text="提交中。。。。" x="22" y="37.77"/>
+	</e:Group>
+</e:Skin>

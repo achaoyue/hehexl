@@ -38,6 +38,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 
 	private me: GamerSprite;
 	private gift: GiftSprite;
+	private status:ResponseMessageTypeEnum;
 
 
 	public constructor() {
@@ -124,7 +125,11 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		} else if (msgObj.messageType == ResponseMessageTypeEnum.START_GAME) {
 			this.onStartGame(msgObj.data)
 		} else if (msgObj.messageType == ResponseMessageTypeEnum.GAME_OVER) {
-			this.onGameOver(msgObj.data)
+			if(this.status == ResponseMessageTypeEnum.GAME_OVER){
+				return;
+			}
+			this.onGameOver(msgObj.data);
+			this.status = ResponseMessageTypeEnum.GAME_OVER;
 		}
 	}
 	private onSocketOpen() {
@@ -142,6 +147,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	private updateSpriteStatus(event: GameStartEvent) {
 		let i = 0;
 		for (i; event.bombs != undefined && i < this.bombs.length && i < event.bombs.length; i++) {
+			this.bombs[i].rotation = Math.atan2(event.bombs[i].y - this.bombs[i].y, event.bombs[i].x - this.bombs[i].x) * 180 / Math.PI;
 			this.bombs[i].x = event.bombs[i].x;
 			this.bombs[i].y = event.bombs[i].y;
 			this.bombs[i].toRemove = event.bombs[i].remove;
@@ -153,9 +159,11 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			let point = this.globalToLocal()
 			bomb.x = event.bombs[i].x;
 			bomb.y = event.bombs[i].y;
-			bomb.rotation = Math.atan2(event.bombs[i].y - bomb.y, event.bombs[i].x - bomb.x) * 180 / Math.PI + 90;
+			//bomb.rotation = Math.atan2(event.bombs[i].y - bomb.y, event.bombs[i].x - bomb.x) * 180 / Math.PI + 90;
 			this.bombs.push(bomb);
 			this.addChild(bomb);
+			 var sound:egret.Sound = RES.getRes("fire_mp3");
+			 sound.play(0,1);
 		}
 		//删除出边界的
 		for (let i = 0; i < this.bombs.length; i++) {
