@@ -13,6 +13,8 @@ class GameApp extends eui.Component implements eui.UIComponent {
 	private congzhiPanel: WithdrawPanel;
 	public caidan: eui.Image;
 	public btnFankui: eui.Image;
+	public btnMore:eui.Group;
+
 
 	public constructor() {
 		super();
@@ -29,6 +31,7 @@ class GameApp extends eui.Component implements eui.UIComponent {
 		this.btn_tixian.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onTixian, this);
 		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_TAP, this.startGame, this);
 		this.btnFankui.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFeedback, this);
+		this.btnMore.addEventListener(egret.TouchEvent.TOUCH_TAP,this.more,this);
 		this.startAnimation();
 	}
 
@@ -62,5 +65,9 @@ class GameApp extends eui.Component implements eui.UIComponent {
 
 	private startAnimation() {
 		egret.Tween.get(this.caidan, { loop: true }).to({ rotation: 360 }, 4000, egret.Ease.backInOut)
+	}
+	private more(){
+		console.log("click")
+		window["showGzh"]();
 	}
 }

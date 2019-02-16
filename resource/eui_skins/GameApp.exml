@@ -15,9 +15,16 @@
 		<e:Label text="抢红包游戏素材来自网络，如有侵权，请联系我们，我们将在第一时间删除问题素材" x="117" y="1056" anchorOffsetX="0" width="406" anchorOffsetY="0" height="52" textAlign="center" size="18" backgroundColor="0x020101"/>
 		<e:Image source="tree1_png" x="320" y="151.62" anchorOffsetX="0" width="362" anchorOffsetY="0" height="374" rotation="342.04" visible="false"/>
 		<e:Image id="caidan" source="egg_png" x="323.97" y="340.12" anchorOffsetX="74.24" width="148.48" anchorOffsetY="0" height="167.27"/>
-		<e:Group id="btnFankui" x="549.84" y="17.5">
-			<e:Image source="egg_png" x="0" y="0" anchorOffsetX="0" width="65.15" anchorOffsetY="0" height="77.88"/>
-			<e:Label text="反馈" x="12.58" y="28.94" textColor="0x8113ef" size="20"/>
+		<e:Image source="title_png" x="20.5" y="70"/>
+		<e:Group x="549.84" y="17.5">
+			<e:Group id="btnFankui" x="0" y="0">
+				<e:Image source="egg_png" x="0" y="0" anchorOffsetX="0" width="65.15" anchorOffsetY="0" height="77.88"/>
+				<e:Label text="反馈" x="12.58" y="28.94" textColor="0x8113ef" size="20"/>
+			</e:Group>
+			<e:Group id="btnMore" x="-0.3" y="89.12">
+				<e:Image width="65.45" height="77" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" source="egg_png"/>
+				<e:Label text="更多" x="13.3" y="28.5" textColor="0x8113EF" size="20"/>
+			</e:Group>
 		</e:Group>
 	</e:Group>
 	<e:Image id="headImg" width="72" height="60" x="24" y="20" anchorOffsetX="0" anchorOffsetY="0" source="pangzi_png" visible="false"/>
@@ -27,5 +34,4 @@
 	<e:Button id="btn_congzhi" label="充值" x="358.19" y="53.02" anchorOffsetX="7.66" anchorOffsetY="5.79" height="35" width="67" visible="false"/>
 	<ns1:HomeTabPanel id="tabPanel" width="620" height="580" x="10" y="250" anchorOffsetX="0" anchorOffsetY="0" visible="false"/>
 	<e:Image source="tree2_png" x="-120.89" y="225.66" rotation="330.96" anchorOffsetX="0" width="382.47" anchorOffsetY="0" height="380.52" visible="false"/>
-	<e:Image source="title_png" x="20.5" y="70"/>
 </e:Skin>
