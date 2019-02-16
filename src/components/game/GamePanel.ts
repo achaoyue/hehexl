@@ -9,9 +9,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	public waitGroup: eui.Group;
 	public loginText: eui.Label;
 	public btnStopWait: eui.Button;
-
-
-
+	public timeLabel:eui.Label;
 
 	//------------以下为自定义变量-------------
 	/**
@@ -41,6 +39,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	private status: ResponseMessageTypeEnum;
 	private bgSound: egret.Sound;
 	private bgSoundChannel: egret.SoundChannel;
+	private startTime:number;
 
 
 	public constructor() {
@@ -216,7 +215,12 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	}
 	private onStartGame(data: Array<number>) {
 		for (let gameId of data) {
-			let gamer = new GamerSprite(RES.getRes("guaiwu_png"))
+			let gamer;
+			if(gameId == userInfo.id){
+				gamer = new GamerSprite(RES.getRes("guaiwu_png"));
+			}else{
+				gamer = new GamerSprite(RES.getRes("guaiwu2_png"));
+			}
 			gamer.x = 100;
 			gamer.y = 100;
 			gamer.id = gameId;
@@ -227,6 +231,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			this.setChildIndex(gamer, 1)
 			this.sprites.push(gamer);
 		}
+		this.startTime = new Date().getTime();
 		this.waitGroup.visible = false;
 	}
 	private onGameOver(data) {

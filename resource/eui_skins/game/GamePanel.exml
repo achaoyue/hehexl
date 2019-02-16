@@ -7,6 +7,7 @@
 		<ns1:VirtualJoystick id="vJoystick" width="180" height="180" x="72" y="937" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 		<e:Label id="meScore" text="0分" x="48.5" y="25" textColor="0x0c0000"/>
 		<e:Label id="oScore" text="0分" x="450" y="16.5" textColor="0xf40707"/>
+		<e:Label id="timeLabel" text="   " x="254" y="15"/>
 	</e:Group>
 	<e:Group width="100%" height="100%" x="0" y="0" visible="false">
 		<e:Image source="mountain_png" x="277" y="767.17"/>
@@ -37,5 +38,6 @@
 		<e:Rect width="100%" height="100%" x="0" y="0"/>
 		<e:Label id="loginText" text="匹配中。。。。" x="68.95" y="40" fontFamily="SimSun"/>
 		<e:Button id="btnStopWait" label="取消等待" x="324" y="128"/>
+		<e:Label text="本游戏需要两名玩家，如果没有匹配，可以先分享给好友，邀请好友一起玩。" x="23.5" y="245" anchorOffsetX="0" width="432" anchorOffsetY="0" height="123"/>
 	</e:Group>
 </e:Skin>
