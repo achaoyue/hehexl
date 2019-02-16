@@ -9,7 +9,7 @@ class GamerSprite extends egret.Sprite {
 		this.width = 80;
 		this.height = 80;
 		this.anchorOffsetX = 40;
-		this.anchorOffsetY = 40;
+		this.anchorOffsetY = 20;
 
 		this.saomiao = new egret.Bitmap();
 		this.saomiao.texture = RES.getRes("saomiao_png");

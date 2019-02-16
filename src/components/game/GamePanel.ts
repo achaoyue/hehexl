@@ -38,7 +38,9 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 
 	private me: GamerSprite;
 	private gift: GiftSprite;
-	private status:ResponseMessageTypeEnum;
+	private status: ResponseMessageTypeEnum;
+	private bgSound: egret.Sound;
+	private bgSoundChannel: egret.SoundChannel;
 
 
 	public constructor() {
@@ -57,8 +59,10 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		this.btnFire.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onFire, this);
 		//初始化socket
 		this.initWebsocket();
-		this.btnStopWait.addEventListener(egret.TouchEvent.TOUCH_TAP, this.stopWait, this);
+		this.btnStopWait.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
 		this.btn_close.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClose, this);
+		this.bgSound = RES.getRes("bg_mp3");
+		this.bgSoundChannel = this.bgSound.play()
 		// this.buildGift(100, 100, 2000)
 	}
 
@@ -98,6 +102,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 	private onClose() {
 		this.socket.close();
 		this.parent.removeChild(this);
+		this.bgSoundChannel.stop();
 	}
 
 	private initWebsocket() {
@@ -125,7 +130,7 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 		} else if (msgObj.messageType == ResponseMessageTypeEnum.START_GAME) {
 			this.onStartGame(msgObj.data)
 		} else if (msgObj.messageType == ResponseMessageTypeEnum.GAME_OVER) {
-			if(this.status == ResponseMessageTypeEnum.GAME_OVER){
+			if (this.status == ResponseMessageTypeEnum.GAME_OVER) {
 				return;
 			}
 			this.onGameOver(msgObj.data);
@@ -162,8 +167,8 @@ class GamePanel extends eui.Component implements eui.UIComponent {
 			//bomb.rotation = Math.atan2(event.bombs[i].y - bomb.y, event.bombs[i].x - bomb.x) * 180 / Math.PI + 90;
 			this.bombs.push(bomb);
 			this.addChild(bomb);
-			 var sound:egret.Sound = RES.getRes("fire_mp3");
-			 sound.play(0,1);
+			var sound: egret.Sound = RES.getRes("fire_mp3");
+			sound.play(0, 1);
 		}
 		//删除出边界的
 		for (let i = 0; i < this.bombs.length; i++) {
